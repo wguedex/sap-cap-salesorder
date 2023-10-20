@@ -1,0 +1,200 @@
+
+CREATE TABLE com_sales_order_Countries (
+  ID NVARCHAR(3) NOT NULL,
+  name NVARCHAR(255),
+  descr NVARCHAR(1000),
+  PRIMARY KEY(ID)
+);
+
+CREATE TABLE com_sales_order_Currencies (
+  ID NVARCHAR(3) NOT NULL,
+  Description NVARCHAR(5000),
+  PRIMARY KEY(ID)
+);
+
+CREATE TABLE com_sales_order_Header (
+  createdAt TIMESTAMP_TEXT,
+  createdBy NVARCHAR(255),
+  modifiedAt TIMESTAMP_TEXT,
+  modifiedBy NVARCHAR(255),
+  ID NVARCHAR(36) NOT NULL,
+  OrderNumber NVARCHAR(8),
+  Email NVARCHAR(30),
+  FirstName NVARCHAR(30),
+  LastName NVARCHAR(30),
+  Country_ID NVARCHAR(3),
+  DeliveryDate TIMESTAMP_TEXT,
+  OrderStatus INTEGER,
+  ImageURL NVARCHAR(5000),
+  PRIMARY KEY(ID)
+);
+
+CREATE TABLE com_sales_order_Items (
+  ID NVARCHAR(36) NOT NULL,
+  OrderNumber NVARCHAR(8),
+  PositionNumber INTEGER,
+  Name NVARCHAR(40),
+  Description NVARCHAR(40),
+  ReleaseDate TIMESTAMP_TEXT,
+  DiscontinuedDate TIMESTAMP_TEXT,
+  Price DECIMAL(12, 2),
+  Currency_ID NVARCHAR(3),
+  Height DECIMAL(15, 3),
+  Width DECIMAL(15, 3),
+  Depth DECIMAL(15, 3),
+  Quantity DECIMAL(16, 2),
+  unitOfMeasure NVARCHAR(4),
+  Header_ID NVARCHAR(36),
+  PRIMARY KEY(ID)
+);
+
+CREATE TABLE com_sales_order_Countries_texts (
+  locale NVARCHAR(14) NOT NULL,
+  ID NVARCHAR(3) NOT NULL,
+  name NVARCHAR(255),
+  descr NVARCHAR(1000),
+  PRIMARY KEY(locale, ID)
+);
+
+CREATE TABLE com_sales_order_Currencies_texts (
+  locale NVARCHAR(14) NOT NULL,
+  ID NVARCHAR(3) NOT NULL,
+  Description NVARCHAR(5000),
+  PRIMARY KEY(locale, ID)
+);
+
+CREATE VIEW localized_com_sales_order_Countries AS SELECT
+  L_0.ID,
+  coalesce(localized_1.name, L_0.name) AS name,
+  coalesce(localized_1.descr, L_0.descr) AS descr
+FROM (com_sales_order_Countries AS L_0 LEFT JOIN com_sales_order_Countries_texts AS localized_1 ON localized_1.ID = L_0.ID AND localized_1.locale = 'en');
+
+CREATE VIEW localized_com_sales_order_Currencies AS SELECT
+  L_0.ID,
+  coalesce(localized_1.Description, L_0.Description) AS Description
+FROM (com_sales_order_Currencies AS L_0 LEFT JOIN com_sales_order_Currencies_texts AS localized_1 ON localized_1.ID = L_0.ID AND localized_1.locale = 'en');
+
+CREATE VIEW localized_com_sales_order_Header AS SELECT
+  L.createdAt,
+  L.createdBy,
+  L.modifiedAt,
+  L.modifiedBy,
+  L.ID,
+  L.OrderNumber,
+  L.Email,
+  L.FirstName,
+  L.LastName,
+  L.Country_ID,
+  L.DeliveryDate,
+  L.OrderStatus,
+  L.ImageURL
+FROM com_sales_order_Header AS L;
+
+CREATE VIEW localized_com_sales_order_Items AS SELECT
+  L.ID,
+  L.OrderNumber,
+  L.PositionNumber,
+  L.Name,
+  L.Description,
+  L.ReleaseDate,
+  L.DiscontinuedDate,
+  L.Price,
+  L.Currency_ID,
+  L.Height,
+  L.Width,
+  L.Depth,
+  L.Quantity,
+  L.unitOfMeasure,
+  L.Header_ID
+FROM com_sales_order_Items AS L;
+
+CREATE VIEW localized_de_com_sales_order_Countries AS SELECT
+  L_0.ID,
+  coalesce(localized_de_1.name, L_0.name) AS name,
+  coalesce(localized_de_1.descr, L_0.descr) AS descr
+FROM (com_sales_order_Countries AS L_0 LEFT JOIN com_sales_order_Countries_texts AS localized_de_1 ON localized_de_1.ID = L_0.ID AND localized_de_1.locale = 'de');
+
+CREATE VIEW localized_fr_com_sales_order_Countries AS SELECT
+  L_0.ID,
+  coalesce(localized_fr_1.name, L_0.name) AS name,
+  coalesce(localized_fr_1.descr, L_0.descr) AS descr
+FROM (com_sales_order_Countries AS L_0 LEFT JOIN com_sales_order_Countries_texts AS localized_fr_1 ON localized_fr_1.ID = L_0.ID AND localized_fr_1.locale = 'fr');
+
+CREATE VIEW localized_de_com_sales_order_Currencies AS SELECT
+  L_0.ID,
+  coalesce(localized_de_1.Description, L_0.Description) AS Description
+FROM (com_sales_order_Currencies AS L_0 LEFT JOIN com_sales_order_Currencies_texts AS localized_de_1 ON localized_de_1.ID = L_0.ID AND localized_de_1.locale = 'de');
+
+CREATE VIEW localized_fr_com_sales_order_Currencies AS SELECT
+  L_0.ID,
+  coalesce(localized_fr_1.Description, L_0.Description) AS Description
+FROM (com_sales_order_Currencies AS L_0 LEFT JOIN com_sales_order_Currencies_texts AS localized_fr_1 ON localized_fr_1.ID = L_0.ID AND localized_fr_1.locale = 'fr');
+
+CREATE VIEW localized_de_com_sales_order_Header AS SELECT
+  L.createdAt,
+  L.createdBy,
+  L.modifiedAt,
+  L.modifiedBy,
+  L.ID,
+  L.OrderNumber,
+  L.Email,
+  L.FirstName,
+  L.LastName,
+  L.Country_ID,
+  L.DeliveryDate,
+  L.OrderStatus,
+  L.ImageURL
+FROM com_sales_order_Header AS L;
+
+CREATE VIEW localized_fr_com_sales_order_Header AS SELECT
+  L.createdAt,
+  L.createdBy,
+  L.modifiedAt,
+  L.modifiedBy,
+  L.ID,
+  L.OrderNumber,
+  L.Email,
+  L.FirstName,
+  L.LastName,
+  L.Country_ID,
+  L.DeliveryDate,
+  L.OrderStatus,
+  L.ImageURL
+FROM com_sales_order_Header AS L;
+
+CREATE VIEW localized_de_com_sales_order_Items AS SELECT
+  L.ID,
+  L.OrderNumber,
+  L.PositionNumber,
+  L.Name,
+  L.Description,
+  L.ReleaseDate,
+  L.DiscontinuedDate,
+  L.Price,
+  L.Currency_ID,
+  L.Height,
+  L.Width,
+  L.Depth,
+  L.Quantity,
+  L.unitOfMeasure,
+  L.Header_ID
+FROM com_sales_order_Items AS L;
+
+CREATE VIEW localized_fr_com_sales_order_Items AS SELECT
+  L.ID,
+  L.OrderNumber,
+  L.PositionNumber,
+  L.Name,
+  L.Description,
+  L.ReleaseDate,
+  L.DiscontinuedDate,
+  L.Price,
+  L.Currency_ID,
+  L.Height,
+  L.Width,
+  L.Depth,
+  L.Quantity,
+  L.unitOfMeasure,
+  L.Header_ID
+FROM com_sales_order_Items AS L;
+

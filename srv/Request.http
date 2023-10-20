@@ -1,0 +1,68 @@
+
+### Obtener Header
+GET http://localhost:4004/SalesOrder/Header
+
+### Obtener Header con ID
+GET http://localhost:4004/SalesOrder/Header(02e70ab6-47cd-4d08-9044-e81c276e2fcb)
+
+### Crear un nuevo Header
+POST http://localhost:4004/SalesOrder/Header   HTTP/1.1
+Content-Type: application/json
+
+{   
+  "Email": "newuser@example.com",
+  "FirstName": "New",
+  "LastName": "User",
+  "Country_ID": "FRA",
+  "DeliveryDate": "2023-09-07T12:00:00Z",
+  "OrderStatus": 1,
+  "ImageURL": "https://example.com/image6.jpg",
+  "createdAt": "2023-09-07T12:00:00Z",
+  "createdBy": "newuser@example.com",
+  "modifiedAt": "2023-09-07T12:00:00Z",
+  "modifiedBy": "newuser@example.com", 
+    "Items" : [ { 
+              "OrderNumber": "90000007", 
+              "Name": "Smartphone X",
+              "Description": "High-end smartphone",
+              "ReleaseDate": "2023-09-15T08:00:00Z",
+              "DiscontinuedDate": "2024-09-15T08:00:00Z",
+              "Price": 799.99,
+              "Height": 15.6,
+              "Width": 7.2,
+              "Depth": 0.8,
+              "Quantity": 50.00,
+              "unitOfMeasure": "PCS"
+            } ]
+}
+
+### Actualizar Header  
+PATCH http://localhost:4004/SalesOrder/Header(357b10fb-6604-4d2f-bfb6-54966229866d) HTTP/1.1
+Content-Type: application/json
+
+{  
+  "Email": "updateduser@example.com",
+  "FirstName": "Updated",
+  "LastName": "User",
+  "Country_ID": "USA",
+  "DeliveryDate": "2023-09-10T12:00:00Z",
+  "OrderStatus": 2,
+  "ImageURL": "https://example.com/image_updated.jpg",
+  "modifiedAt": "2023-09-10T12:00:00Z",
+  "modifiedBy": "updateduser@example.com", 
+    "Items" : [ {  
+              "Name": "Smartphone X",
+              "Description": "High-end smartphone",
+              "ReleaseDate": "2023-09-15T08:00:00Z",
+              "DiscontinuedDate": "2024-09-15T08:00:00Z",
+              "Price": 799.99,
+              "Height": 15.6,
+              "Width": 7.2,
+              "Depth": 0.8,
+              "Quantity": 50.00,
+              "unitOfMeasure": "PCS"
+            } ]
+}
+
+### Borrar Header 
+DELETE http://localhost:4004/SalesOrder/Header(357b10fb-6604-4d2f-bfb6-54966229866d) HTTP/1.1

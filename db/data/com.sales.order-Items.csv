@@ -1,0 +1,8 @@
+ID,Header_ID,OrderNumber,PositionNumber,Name,Description,ReleaseDate,DiscontinuedDate,Price,Currency_ID,Height,Width,Depth,Quantity,unitOfMeasure
+d62b1001-69ed-4404-9d6f-10a71b3a7a5e,43e2471f-75bd-4d8a-9f02-0d09477be80d,90000001,1,Smartphone X,High-end smartphone,2023-09-15T08:00:00,2024-09-15T08:00:00,799.99,USD,15.6,7.2,0.8,50.00,PCS
+c6843c0a-6a35-41a3-98fb-6efad61a2893,43e2471f-75bd-4d8a-9f02-0d09477be80d,90000001,2,Laptop Pro,Powerful laptop for professionals,2023-09-20T08:00:00,2024-09-20T08:00:00,1299.99,USD,14.1,9.7,0.6,20.00,PCS
+0b31d20a-3e9a-4df3-bde0-d84d977b9b3b,f799a2a8-421e-41c2-b4c4-7d7f4d6e6a23,90000002,1,Tablet Mini,Compact tablet for on-the-go,2023-09-10T08:00:00,2024-09-10T08:00:00,299.99,USD,8.0,5.2,0.4,35.00,PCS
+e9d3357a-77bc-4e55-8057-45c2bea8f8e4,f799a2a8-421e-41c2-b4c4-7d7f4d6e6a23,90000002,2,Wireless Mouse,Ergonomic wireless mouse,2023-09-12T08:00:00,2024-09-12T08:00:00,29.99,USD,1.4,2.3,4.1,50.00,PCS
+1a6e39ad-05e3-4814-87b3-738ad0c26da6,ca2e4220-7dd1-44ec-aa74-9e116fa1607a,90000003,1,4K Smart TV,Large 4K UHD smart TV,2023-09-05T08:00:00,2024-09-05T08:00:00,899.99,USD,42.0,72.6,2.5,15.00,PCS
+75c48152-2533-4f9a-aaf0-e4ea8f1104b3,ca2e4220-7dd1-44ec-aa74-9e116fa1607a,90000003,2,Bluetooth Speaker,Portable Bluetooth speaker,2023-09-08T08:00:00,2024-09-08T08:00:00,79.99,USD,5.2,2.8,3.5,40.00,PCS
+acb54718-0a49-481f-bf62-0f1fda5e87d5,76122c2c-17a7-4c14-bfc9-9a98b2883a8e,90000004,1,Gaming Console,Next-gen gaming console,2023-09-01T08:00:00,2024-09-01T08:00:00,499.99,USD,5.9,11.8,2.4,10.00,PCS

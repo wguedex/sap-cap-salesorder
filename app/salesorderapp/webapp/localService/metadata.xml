@@ -1,0 +1,287 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/Common.xml">
+        <edmx:Include Alias="Common" Namespace="com.sap.vocabularies.Common.v1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://oasis-tcs.github.io/odata-vocabularies/vocabularies/Org.OData.Core.V1.xml">
+        <edmx:Include Alias="Core" Namespace="Org.OData.Core.V1"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="SalesOrdersSrv" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <EntityContainer Name="EntityContainer">
+                <EntitySet Name="Header" EntityType="SalesOrdersSrv.Header">
+                    <NavigationPropertyBinding Path="Country" Target="Countries"/>
+                    <NavigationPropertyBinding Path="Items" Target="Items"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Header"/>
+                </EntitySet>
+                <EntitySet Name="Items" EntityType="SalesOrdersSrv.Items">
+                    <NavigationPropertyBinding Path="Currency" Target="Currencies"/>
+                    <NavigationPropertyBinding Path="Header" Target="Header"/>
+                    <NavigationPropertyBinding Path="SiblingEntity" Target="Items"/>
+                </EntitySet>
+                <EntitySet Name="Currencies" EntityType="SalesOrdersSrv.Currencies">
+                    <NavigationPropertyBinding Path="texts" Target="Currencies_texts"/>
+                    <NavigationPropertyBinding Path="localized" Target="Currencies_texts"/>
+                </EntitySet>
+                <EntitySet Name="Countries" EntityType="SalesOrdersSrv.Countries">
+                    <NavigationPropertyBinding Path="texts" Target="Countries_texts"/>
+                    <NavigationPropertyBinding Path="localized" Target="Countries_texts"/>
+                </EntitySet>
+                <EntitySet Name="Currencies_texts" EntityType="SalesOrdersSrv.Currencies_texts"/>
+                <EntitySet Name="Countries_texts" EntityType="SalesOrdersSrv.Countries_texts"/>
+            </EntityContainer>
+            <EntityType Name="Header">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="createdAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="createdBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="modifiedAt" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="modifiedBy" Type="Edm.String" MaxLength="255"/>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="OrderNumber" Type="Edm.String" MaxLength="8"/>
+                <Property Name="Email" Type="Edm.String" MaxLength="30"/>
+                <Property Name="FirstName" Type="Edm.String" MaxLength="30"/>
+                <Property Name="LastName" Type="Edm.String" MaxLength="30"/>
+                <NavigationProperty Name="Country" Type="SalesOrdersSrv.Countries">
+                    <ReferentialConstraint Property="Country_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="Country_ID" Type="Edm.String" MaxLength="3"/>
+                <Property Name="DeliveryDate" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="OrderStatus" Type="Edm.Int32"/>
+                <Property Name="ImageURL" Type="Edm.String"/>
+                <NavigationProperty Name="Items" Type="Collection(SalesOrdersSrv.Items)" Partner="Header">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="SalesOrdersSrv.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="SalesOrdersSrv.Header"/>
+            </EntityType>
+            <EntityType Name="Items">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                    <PropertyRef Name="IsActiveEntity"/>
+                </Key>
+                <Property Name="ID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="OrderNumber" Type="Edm.String" MaxLength="8"/>
+                <Property Name="PositionNumber" Type="Edm.Int32"/>
+                <Property Name="Name" Type="Edm.String" MaxLength="40"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="40"/>
+                <Property Name="ReleaseDate" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="DiscontinuedDate" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="Price" Type="Edm.Decimal" Scale="2" Precision="12"/>
+                <NavigationProperty Name="Currency" Type="SalesOrdersSrv.Currencies">
+                    <ReferentialConstraint Property="Currency_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="Currency_ID" Type="Edm.String" MaxLength="3"/>
+                <Property Name="Height" Type="Edm.Decimal" Scale="3" Precision="15"/>
+                <Property Name="Width" Type="Edm.Decimal" Scale="3" Precision="15"/>
+                <Property Name="Depth" Type="Edm.Decimal" Scale="3" Precision="15"/>
+                <Property Name="Quantity" Type="Edm.Decimal" Scale="2" Precision="16"/>
+                <Property Name="unitOfMeasure" Type="Edm.String" MaxLength="4"/>
+                <NavigationProperty Name="Header" Type="SalesOrdersSrv.Header" Partner="Items">
+                    <ReferentialConstraint Property="Header_ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+                <Property Name="Header_ID" Type="Edm.Guid"/>
+                <Property Name="IsActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="true"/>
+                <Property Name="HasActiveEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <Property Name="HasDraftEntity" Type="Edm.Boolean" Nullable="false" DefaultValue="false"/>
+                <NavigationProperty Name="DraftAdministrativeData" Type="SalesOrdersSrv.DraftAdministrativeData" ContainsTarget="true"/>
+                <NavigationProperty Name="SiblingEntity" Type="SalesOrdersSrv.Items"/>
+            </EntityType>
+            <EntityType Name="Currencies">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <NavigationProperty Name="texts" Type="Collection(SalesOrdersSrv.Currencies_texts)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="localized" Type="SalesOrdersSrv.Currencies_texts">
+                    <ReferentialConstraint Property="ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="Countries">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+                <NavigationProperty Name="texts" Type="Collection(SalesOrdersSrv.Countries_texts)">
+                    <OnDelete Action="Cascade"/>
+                </NavigationProperty>
+                <NavigationProperty Name="localized" Type="SalesOrdersSrv.Countries_texts">
+                    <ReferentialConstraint Property="ID" ReferencedProperty="ID"/>
+                </NavigationProperty>
+            </EntityType>
+            <EntityType Name="DraftAdministrativeData">
+                <Key>
+                    <PropertyRef Name="DraftUUID"/>
+                </Key>
+                <Property Name="DraftUUID" Type="Edm.Guid" Nullable="false"/>
+                <Property Name="CreationDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="CreatedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsCreatedByMe" Type="Edm.Boolean"/>
+                <Property Name="LastChangeDateTime" Type="Edm.DateTimeOffset" Precision="7"/>
+                <Property Name="LastChangedByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="InProcessByUser" Type="Edm.String" MaxLength="256"/>
+                <Property Name="DraftIsProcessedByMe" Type="Edm.Boolean"/>
+            </EntityType>
+            <EntityType Name="Currencies_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="ID" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="Description" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Countries_texts">
+                <Key>
+                    <PropertyRef Name="locale"/>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="locale" Type="Edm.String" MaxLength="14" Nullable="false"/>
+                <Property Name="ID" Type="Edm.String" MaxLength="3" Nullable="false"/>
+                <Property Name="name" Type="Edm.String" MaxLength="255"/>
+                <Property Name="descr" Type="Edm.String" MaxLength="1000"/>
+            </EntityType>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="SalesOrdersSrv.Header"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="SalesOrdersSrv.Header"/>
+            </Action>
+            <Action Name="draftPrepare" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="SalesOrdersSrv.Items"/>
+                <Parameter Name="SideEffectsQualifier" Type="Edm.String"/>
+                <ReturnType Type="SalesOrdersSrv.Items"/>
+            </Action>
+            <Action Name="draftActivate" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="SalesOrdersSrv.Header"/>
+                <ReturnType Type="SalesOrdersSrv.Header"/>
+            </Action>
+            <Action Name="draftEdit" IsBound="true" EntitySetPath="in">
+                <Parameter Name="in" Type="SalesOrdersSrv.Header"/>
+                <Parameter Name="PreserveChanges" Type="Edm.Boolean"/>
+                <ReturnType Type="SalesOrdersSrv.Header"/>
+            </Action>
+            <Annotations Target="SalesOrdersSrv.EntityContainer/Header">
+                <Annotation Term="Common.DraftRoot">
+                    <Record Type="Common.DraftRootType">
+                        <PropertyValue Property="ActivationAction" String="SalesOrdersSrv.draftActivate"/>
+                        <PropertyValue Property="EditAction" String="SalesOrdersSrv.draftEdit"/>
+                        <PropertyValue Property="PreparationAction" String="SalesOrdersSrv.draftPrepare"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="SalesOrdersSrv.Header/createdAt">
+                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                <Annotation Term="Core.Immutable" Bool="true"/>
+                <Annotation Term="Core.Computed" Bool="true"/>
+                <Annotation Term="Common.Label" String="{i18n>CreatedAt}"/>
+                </Annotations>
+                <Annotations Target="SalesOrdersSrv.Header/createdBy">
+                    <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                    <Annotation Term="Core.Immutable" Bool="true"/>
+                    <Annotation Term="Core.Computed" Bool="true"/>
+                    <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                        <Annotation Term="Common.Label" String="{i18n>CreatedBy}"/>
+                        </Annotations>
+                        <Annotations Target="SalesOrdersSrv.Header/modifiedAt">
+                            <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                            <Annotation Term="Core.Computed" Bool="true"/>
+                            <Annotation Term="Common.Label" String="{i18n>ChangedAt}"/>
+                            </Annotations>
+                            <Annotations Target="SalesOrdersSrv.Header/modifiedBy">
+                                <Annotation Term="UI.HiddenFilter" Bool="true"/>
+                                <Annotation Term="Core.Computed" Bool="true"/>
+                                <Annotation Term="Core.Description" String="{i18n>UserID.Description}"/>
+                                    <Annotation Term="Common.Label" String="{i18n>ChangedBy}"/>
+                                    </Annotations>
+                                    <Annotations Target="SalesOrdersSrv.Header/OrderNumber">
+                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="SalesOrdersSrv.Header/IsActiveEntity">
+                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="SalesOrdersSrv.Header/HasActiveEntity">
+                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="SalesOrdersSrv.Header/HasDraftEntity">
+                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="SalesOrdersSrv.Header/DraftAdministrativeData">
+                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="SalesOrdersSrv.EntityContainer/Items">
+                                        <Annotation Term="Common.DraftNode">
+                                            <Record Type="Common.DraftNodeType">
+                                                <PropertyValue Property="PreparationAction" String="SalesOrdersSrv.draftPrepare"/>
+                                            </Record>
+                                        </Annotation>
+                                    </Annotations>
+                                    <Annotations Target="SalesOrdersSrv.Items/OrderNumber">
+                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="SalesOrdersSrv.Items/PositionNumber">
+                                        <Annotation Term="Core.Computed" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="SalesOrdersSrv.Items/IsActiveEntity">
+                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="SalesOrdersSrv.Items/HasActiveEntity">
+                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="SalesOrdersSrv.Items/HasDraftEntity">
+                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="SalesOrdersSrv.Items/DraftAdministrativeData">
+                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                    </Annotations>
+                                    <Annotations Target="SalesOrdersSrv.DraftAdministrativeData">
+                                        <Annotation Term="Common.Label" String="{i18n>Draft_DraftAdministrativeData}"/>
+                                        </Annotations>
+                                        <Annotations Target="SalesOrdersSrv.DraftAdministrativeData/DraftUUID">
+                                            <Annotation Term="UI.Hidden" Bool="true"/>
+                                            <Annotation Term="Common.Label" String="{i18n>Draft_DraftUUID}"/>
+                                            </Annotations>
+                                            <Annotations Target="SalesOrdersSrv.DraftAdministrativeData/CreationDateTime">
+                                                <Annotation Term="Common.Label" String="{i18n>Draft_CreationDateTime}"/>
+                                                </Annotations>
+                                                <Annotations Target="SalesOrdersSrv.DraftAdministrativeData/CreatedByUser">
+                                                    <Annotation Term="Common.Label" String="{i18n>Draft_CreatedByUser}"/>
+                                                    </Annotations>
+                                                    <Annotations Target="SalesOrdersSrv.DraftAdministrativeData/DraftIsCreatedByMe">
+                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                        <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsCreatedByMe}"/>
+                                                        </Annotations>
+                                                        <Annotations Target="SalesOrdersSrv.DraftAdministrativeData/LastChangeDateTime">
+                                                            <Annotation Term="Common.Label" String="{i18n>Draft_LastChangeDateTime}"/>
+                                                            </Annotations>
+                                                            <Annotations Target="SalesOrdersSrv.DraftAdministrativeData/LastChangedByUser">
+                                                                <Annotation Term="Common.Label" String="{i18n>Draft_LastChangedByUser}"/>
+                                                                </Annotations>
+                                                                <Annotations Target="SalesOrdersSrv.DraftAdministrativeData/InProcessByUser">
+                                                                    <Annotation Term="Common.Label" String="{i18n>Draft_InProcessByUser}"/>
+                                                                    </Annotations>
+                                                                    <Annotations Target="SalesOrdersSrv.DraftAdministrativeData/DraftIsProcessedByMe">
+                                                                        <Annotation Term="UI.Hidden" Bool="true"/>
+                                                                        <Annotation Term="Common.Label" String="{i18n>Draft_DraftIsProcessedByMe}"/>
+                                                                        </Annotations>
+                                                                        <Annotations Target="SalesOrdersSrv.Currencies_texts/locale">
+                                                                            <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                            </Annotations>
+                                                                            <Annotations Target="SalesOrdersSrv.Countries_texts/locale">
+                                                                                <Annotation Term="Common.Label" String="{i18n>LanguageCode}"/>
+                                                                                </Annotations>
+                                                                            </Schema>
+                                                                        </edmx:DataServices>
+                                                                    </edmx:Edmx>

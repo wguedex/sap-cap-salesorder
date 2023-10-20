@@ -1,0 +1,43 @@
+{
+  "name": "sap-cap-salesorder",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^6",
+    "@sap/cds-common-content": "^1.2.0",
+    "express": "^4"
+  },
+  "devDependencies": {
+    "@sap/eslint-plugin-ui5-jsdocs": "^2.0.5",
+    "@sap/ux-specification": "^1.108.16",
+    "@sapui5/ts-types": "^1.92.2",
+    "eslint": "^7.32.0",
+    "sqlite3": "^5"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-salesorder": "cds watch --open salesorder/webapp/index.html?sap-ui-xx-viewCache=false",
+    "watch-salesorderapp": "cds watch --open salesorderapp/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "sqlite",
+        "credentials": {
+          "url": "db.sqlite"
+        }
+      }
+    }
+  },
+  "sapux": [
+    "app/salesorder",
+    "app/salesorder",
+    "app/salesorderapp",
+    "app/salesorder",
+    "app/salesorderapp",
+    "app/salesorderapp"
+  ]
+}
