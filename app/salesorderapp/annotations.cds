@@ -4,33 +4,33 @@ annotate service.Header with @(
     UI.LineItem : [
         {
             $Type : 'UI.DataField',
-            Label : 'OrderNumber',
+            Label : '{i18n>Ordernumber}',
             Value : OrderNumber,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'FirstName',
+            Label : '{i18n>Firstname}',
             Value : FirstName,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'LastName',
+            Label : '{i18n>Lastname}',
             Value : LastName,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Email',
+            Label : '{i18n>email}',
             Value : Email,
         },
         {
             $Type : 'UI.DataField',
-            Label : 'Country_ID',
+            Label : '{i18n>Countryid}',
             Value : Country_ID,
         },
         {
             $Type : 'UI.DataField',
             Value : DeliveryDate,
-            Label : 'DeliveryDate',
+            Label : '{i18n>Deliverydate}',
         },
         {
             $Type : 'UI.DataField',
@@ -51,7 +51,7 @@ annotate service.Header with @(
         {
             $Type : 'UI.DataField',
             Value : OrderStatus,
-            Label : 'OrderStatus',
+            Label : '{i18n>Orderstatus}',
         },
     ]
 );
@@ -61,7 +61,7 @@ annotate service.Header with @(
         Data : [
             {
                 $Type : 'UI.DataField',
-                Label : 'OrderNumber',
+                Label : '{i18n>Ordernumber}',
                 Value : OrderNumber,
             },
             {
@@ -71,27 +71,27 @@ annotate service.Header with @(
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'FirstName',
+                Label : '{i18n>Firstname}',
                 Value : FirstName,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'LastName',
+                Label : '{i18n>Lastname}',
                 Value : LastName,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'Country_ID',
+                Label : '{i18n>Countryid}',
                 Value : Country_ID,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'DeliveryDate',
+                Label : '{i18n>Deliverydate}',
                 Value : DeliveryDate,
             },
             {
                 $Type : 'UI.DataField',
-                Label : 'OrderStatus',
+                Label : '{i18n>Orderstatus}',
                 Value : OrderStatus,
             },
         ],
@@ -118,7 +118,7 @@ annotate service.Header with @(
     ]
 );
 annotate service.Header with {
-    OrderNumber @Common.Label : 'OrderNumber'
+    OrderNumber @Common.Label : '{i18n>Ordernumber}'
 };
 annotate service.Header with {
     Email @Common.Label : 'Email'
@@ -131,62 +131,62 @@ annotate service.Items with @(
         {
             $Type : 'UI.DataField',
             Value : OrderNumber,
-            Label : 'OrderNumber',
+            Label : '{i18n>Ordernumber}',
         },
         {
             $Type : 'UI.DataField',
             Value : PositionNumber,
-            Label : 'PositionNumber',
+            Label : '{i18n>Positionnumber}',
         },
         {
             $Type : 'UI.DataField',
             Value : Name,
-            Label : 'Name',
+            Label : '{i18n>Name}',
         },{
             $Type : 'UI.DataField',
             Value : Description,
-            Label : 'Description',
+            Label : '{i18n>Description}',
         },{
             $Type : 'UI.DataField',
             Value : Price,
-            Label : 'Price',
+            Label : '{i18n>Price}',
         },
         {
             $Type : 'UI.DataField',
             Value : Currency_ID,
-            Label : 'Currency_ID',
+            Label : '{i18n>Currencyid}',
         },{
             $Type : 'UI.DataField',
             Value : Quantity,
-            Label : 'Quantity',
+            Label : '{i18n>Quantity}',
         },{
             $Type : 'UI.DataField',
             Value : ReleaseDate,
-            Label : 'ReleaseDate',
+            Label : '{i18n>Releasedate}',
         },
         {
             $Type : 'UI.DataField',
             Value : DiscontinuedDate,
-            Label : 'DiscontinuedDate',
+            Label : '{i18n>Discontinueddate}',
         },
         {
             $Type : 'UI.DataField',
             Value : Height,
-            Label : 'Height',
+            Label : '{i18n>Height}',
         },{
             $Type : 'UI.DataField',
             Value : Width,
-            Label : 'Width',
+            Label : '{i18n>Width}',
         },
         {
             $Type : 'UI.DataField',
             Value : Depth,
-            Label : 'Depth',
+            Label : '{i18n>Depth}',
         },
         {
             $Type : 'UI.DataField',
             Value : unitOfMeasure,
-            Label : 'unitOfMeasure',
+            Label : '{i18n>Unitofmeasure}',
         },]
 );
 annotate service.Items with @(
@@ -204,52 +204,52 @@ annotate service.Items with @(
             {
                 $Type : 'UI.DataField',
                 Value : Name,
-                Label : 'Name',
+                Label : '{i18n>Name}',
             },
             {
                 $Type : 'UI.DataField',
                 Value : Description,
-                Label : 'Description',
+                Label : '{i18n>Description}',
             },{
                 $Type : 'UI.DataField',
                 Value : Price,
-                Label : 'Price',
+                Label : '{i18n>Price}',
             },
             {
                 $Type : 'UI.DataField',
                 Value : Currency_ID,
-                Label : 'Currency_ID',
+                Label : '{i18n>Currencyid}',
             },{
                 $Type : 'UI.DataField',
                 Value : Quantity,
-                Label : 'Quantity',
+                Label : '{i18n>Quantity}',
             },
             {
                 $Type : 'UI.DataField',
                 Value : unitOfMeasure,
-                Label : 'unitOfMeasure',
+                Label : '{i18n>Unitofmeasure}',
             },{
                 $Type : 'UI.DataField',
                 Value : ReleaseDate,
-                Label : 'ReleaseDate',
+                Label : '{i18n>Releasedate}',
             },
             {
                 $Type : 'UI.DataField',
                 Value : DiscontinuedDate,
-                Label : 'DiscontinuedDate',
+                Label : '{i18n>Discontinueddate}',
             },
             {
                 $Type : 'UI.DataField',
                 Value : Height,
-                Label : 'Height',
+                Label : '{i18n>Height}',
             },{
                 $Type : 'UI.DataField',
                 Value : Width,
-                Label : 'Width',
+                Label : '{i18n>Width}',
             },{
                 $Type : 'UI.DataField',
                 Value : Depth,
-                Label : 'Depth',
+                Label : '{i18n>Depth}',
             },],
     }
 );
